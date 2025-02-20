@@ -30,9 +30,9 @@ class _LogoScreenState extends State<LogoScreen> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color.fromARGB(255, 11, 61, 147),
-                Color.fromARGB(255, 10, 63, 58),
-                Color.fromARGB(255, 27, 68, 87),
+                Color.fromARGB(255, 30, 76, 154),
+                Color.fromARGB(255, 22, 133, 122),
+                Color.fromARGB(255, 22, 103, 140),
               ],
             ),
           ),
