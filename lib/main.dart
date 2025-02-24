@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:neer_connect/home_page.dart';
 import 'package:neer_connect/login_page.dart';
 import 'package:neer_connect/logo_screen.dart';
-import 'package:neer_connect/practice.dart';
 import 'package:neer_connect/registration_page.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
