@@ -29,7 +29,7 @@ class _PracticeState extends State<Practice> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: SizedBox(
-            width: 400,
+            width: 450,
             height: 500,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
