@@ -58,12 +58,67 @@ app.post("/login", async (req, res) => {
       // Generate JWT token
       const token = jwt.sign({ id: user._id }, "secret_key", { expiresIn: "1h" });
   
-      res.json({ message: "Login successful!", token, userName : user.username });
+      res.json({ message: "Login successful!", token, userName : user.username, userId: user._id });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error" });
     }
   });
+
+  // Order Schema (Define this before using Order in checkout route)
+const OrderSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  items: [
+    {
+      productId: String,
+      name: String,
+      quantity: Number,
+      price: Number,
+    },
+  ],
+  totalPrice: Number,
+  createdAt: { type: Date, default: Date.now },
+});
+
+const Order = mongoose.model("Order", OrderSchema);
+
+  // Checkout Route (Store Order)
+app.post("/checkout", async (req, res) => {
+  try {
+    const { userId, items, totalPrice } = req.body;
+
+    if (!userId || !items || items.length === 0) {
+      return res.status(400).json({ message: "Invalid order data" });
+    }
+
+    // Check if user exists
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    const newOrder = new Order({ userId, items, totalPrice });
+    await newOrder.save();
+
+    res.json({ message: "Order placed successfully!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Get Order History for a User
+app.get("/orders/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 }); // recent first
+    res.json(orders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to fetch orders" });
+  }
+});
+
   
 
 // Start Server

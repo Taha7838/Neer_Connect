@@ -32,11 +32,16 @@ class _LoginPageState extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         String username = data['userName'];
+        String userId = data['userId'];
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Login Successful!')),
         );
         Navigator.pushReplacementNamed(
-            context, 'homepage', arguments: username);
+            context, 'homepage', arguments: {
+              'username' : username,
+              'userId' : userId
+            },
+            );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(data["message"])));

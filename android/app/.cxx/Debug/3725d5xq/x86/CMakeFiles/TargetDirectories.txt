@@ -1,0 +1,2 @@
+D:/Github/Neer_Connect/android/app/.cxx/Debug/3725d5xq/x86/CMakeFiles/edit_cache.dir
+D:/Github/Neer_Connect/android/app/.cxx/Debug/3725d5xq/x86/CMakeFiles/rebuild_cache.dir

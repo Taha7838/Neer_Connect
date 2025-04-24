@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 
@@ -41,10 +43,13 @@ class _LogoScreenState extends State<LogoScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset("assets/app_logo.png"),
+                CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  radius: 200,
+                    child: Image.asset("assets/app_logo.png"),
+                ),
               ],
             ),
-
           ),
           ),
         ),
